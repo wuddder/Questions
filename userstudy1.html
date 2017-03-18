@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Peripheral userStudy 1</title>
+</head>
+
+<body>
+    <div id="control-panel" style="position: absolute; top: 50px;">
+<!--     <legend>Pilot</legend>
+        <button id='pilotbtm' onclick="userStudy.pilotStudy()">GO</button>
+        <legend>CPM</legend> -->
+       <!--  <button id='warmupbtm1' onclick="userStudy.wpm(1)">150</button>
+        <button id='warmupbtm2' onclick="userStudy.wpm(2)">250</button>
+        <button id='warmupbtm3' onclick="userStudy.wpm(3)">350</button> -->
+        <!-- <input type="text" placeholder="speed (wpm)"" id="wpm-setting" /> -->
+        <legend>Start?</legend>
+        <button id='startbtm' onclick="userStudy.start()">Start</button>
+        <legend>See?</legend>
+        <button onclick="userStudy.nextCharacter('yes');">See</button>
+        <button onclick="userStudy.nextCharacter('no');">!See</button>
+        <!--<legend>Warmup</legend>
+        <button id='warmupbtm' onclick="userStudy.warmup()">GO</button> -->
+    </div>
+    <svg id="mainSVG">
+    </svg>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="Canvas.js"></script>
+    <script type="text/javascript" src="Experiment.js"></script>
+    <script type="text/javascript" src="PilotStudy.js"></script>
+    <script type="text/javascript" src="UserStudy1.js"></script>
+    <script type="text/javascript" src="UserStudy2.js"></script>
+    <script type="text/javascript" src="smil.user.js"></script>
+   
+    <script>
+    var canvas = new Canvas("mainSVG");
+    var exp = new Experiment(canvas);
+    //var pilotStudy = new PilotStudy(exp);
+    var userStudy = new UserStudy1(exp);
+    </script>
+    <script>
+    window.addEventListener('keydown', function(e) {
+        // 	console.log(e);
+        if (e.keyCode == 81) {
+            console.log("See");
+            userStudy.nextCharacter('yes');
+        }
+        if (e.keyCode == 87) {
+            console.log("!See");
+            userStudy.nextCharacter('no');
+        }
+    });
+    // document.getElementById('wpm-setting').addEventListener('change', function(e) {
+    //     console.log("changed to " + document.getElementById('wpm-setting').value);
+    //     userStudy.cpm = parseInt(document.getElementById('wpm-setting').value);
+    // });
+    </script>
+</body>
+
+</html>

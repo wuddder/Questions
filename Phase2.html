@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Peripheral Second Phase</title>
+<style>
+div#padding-dic {
+	height: 1200px;
+}
+</style>
+</head>
+
+<body bgcolor="black">
+<div id="padding-dic"></div>
+    <div id="control-panel" style="position: absolute; top: 1250px;">
+<!--         <legend>Start?</legend>
+        <button id='startbtm' onclick="userStudy.start()">Start</button>
+        <legend>See?</legend>
+        <button onclick="userStudy.nextCharacter('yes');">See</button>
+        <button onclick="userStudy.nextCharacter('no');">!See</button> -->
+        <legend>Warmup</legend>
+        <button id='warmupbtm' onclick="userStudy.phase2()">GO</button> 
+        <button onclick="userStudy.nextDirection('yes');">next</button>
+        <button onclick="userStudy.previousDirection('no');">previous</button>
+
+    </div>
+    <div>
+    </div>
+    <svg id="mainSVG">
+    </svg>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="Canvas.js"></script>
+    <script type="text/javascript" src="Experiment.js"></script>
+    <script type="text/javascript" src="PilotStudy.js"></script>
+    <script type="text/javascript" src="UserStudy1.js"></script>
+    <script type="text/javascript" src="UserStudy2.js"></script>
+    <script type="text/javascript" src="smil.user.js"></script>
+   
+    <script>
+    var canvas = new Canvas("mainSVG");
+    var exp = new Experiment(canvas);
+    var userStudy = new UserStudy2(exp);
+    </script>
+    <script>
+    window.addEventListener('keydown', function(e) {
+        // 	console.log(e);
+        if (e.keyCode == 81) {
+            console.log("See");
+            userStudy.nextCharacter('yes');
+        }
+        if (e.keyCode == 87) {
+            console.log("!See");
+            userStudy.nextCharacter('no');
+        }
+    });
+    // document.getElementById('wpm-setting').addEventListener('change', function(e) {
+    //     console.log("changed to " + document.getElementById('wpm-setting').value);
+    //     userStudy.cpm = parseInt(document.getElementById('wpm-setting').value);
+    // });
+    </script>
+</body>
+
+</html>
