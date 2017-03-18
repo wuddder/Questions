@@ -13,20 +13,11 @@ div#padding-dic {
 <body bgcolor="black">
     <div id="padding-dic"></div>
     <div id="control-panel" style="position: absolute; top: 1250px;">
-<!--     <legend>Pilot</legend>
-        <button id='pilotbtm' onclick="userStudy.pilotStudy()">GO</button>
-        <legend>CPM</legend> -->
-       <!--  <button id='warmupbtm1' onclick="userStudy.wpm(1)">150</button>
-        <button id='warmupbtm2' onclick="userStudy.wpm(2)">250</button>
-        <button id='warmupbtm3' onclick="userStudy.wpm(3)">350</button> -->
-        <!-- <input type="text" placeholder="speed (wpm)"" id="wpm-setting" /> -->
         <legend>Start?</legend>
         <button id='startbtm' onclick="userStudy.start()">Start</button>
         <legend>See?</legend>
         <button onclick="userStudy.nextCharacter('yes');">See</button>
         <button onclick="userStudy.nextCharacter('no');">!See</button>
-        <!--<legend>Warmup</legend>
-        <button id='warmupbtm' onclick="userStudy.warmup()">GO</button> -->
     </div>
     <svg id="mainSVG">
     </svg>
@@ -47,7 +38,7 @@ div#padding-dic {
     </script>
     <script>
     window.addEventListener('keydown', function(e) {
-        // 	console.log(e);
+        //  console.log(e);
         if (e.keyCode == 81) {
             console.log("See");
             userStudy.nextCharacter('yes');
@@ -59,45 +50,7 @@ div#padding-dic {
     });
 
 
-    var peer = new Peer('steven-phase-1', {key: '4egxlr70bg0q9f6r'});
-
-    // handle error
-    peer.on('error', function(error) {
-        console.log('Peer error', error);
-    });
-
-    // connecting
-    // var conn = peer.connect('steven-test-peer-1');
-    var conn = null;
-
-    function _send(msg) {
-        conn.send(msg);
-    }
-
-    peer.on('connection', function(connection) {
-        conn = connection;
-        conn.send("connected with you!");
-        console.log("connection established!");
-        conn.on('data', function(data) {
-            // display on the screen
-            console.log("receiving: " + data);
-            if(data == 'yes')
-                userStudy.nextCharacter('yes');
-            else
-                userStudy.nextCharacter('no');
-        });
-    });
-
-    function send() {
-        var s = document.getElementById('input-text-box').value;
-        if(s.length > 0 && conn != null) {
-            _send(s);
-            document.getElementById('input-text-box').value = "";
-        }
-    }
-
-    userStudy.setSendFunction(_send);
-   
+  
     </script>
 </body>
 
