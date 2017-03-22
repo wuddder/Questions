@@ -21,7 +21,7 @@ var UserStudy1 = function(experiment) {
 	}
 	this.displayOnTop = function() {
 		this.experiment.hideCharacter();
-		this.experiment.showCharacter(this.questionSet[2], , 6, 1);
+		this.experiment.showCharacter(this.questionSet[2], 90, 6, 1);
 	}
 	this.displayOnRight = function() {
 		this.experiment.hideCharacter();
