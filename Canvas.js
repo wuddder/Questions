@@ -7,6 +7,7 @@ var Canvas = function(svgElementId) {
 	this.width  = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	this.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + 150;
 	this.character = null;
+	this.count = 0;
 	document.getElementById(this.canvasId).setAttribute("width", this.width);
 	document.getElementById(this.canvasId).setAttribute("height", this.height);
 	document.getElementById(this.canvasId).setAttribute("fill", "black");
@@ -97,12 +98,23 @@ var Canvas = function(svgElementId) {
 
 	this.showCharacter = function(character) {
 		var e = document.getElementById("display-character");
+
 		if(!e) {
 			var svg = this.getSVGElement();
 			e = document.createElementNS("http://www.w3.org/2000/svg", "text");
 			e.setAttribute('id', 'display-character')
 			svg.appendChild(e);
 			e = document.getElementById('display-character');
+		}
+		else{
+			this.count+=1;
+			var string = "display-character" + this.count;
+			var svg = this.getSVGElement();
+			e = document.createElementNS("http://www.w3.org/2000/svg", "text");
+			e.setAttribute('id', string)
+			svg.appendChild(e);
+			e = document.getElementById(string);
+			console.log("test");
 		}
 		e.setAttribute('x', character.position.x);
 		e.setAttribute('y', character.position.y);
@@ -123,7 +135,18 @@ var Canvas = function(svgElementId) {
 
 	this.hideCharacter = function() {
 		var e = document.getElementById("display-character");
+		if(!e){
+			this.count = 0;
+			return;
+		}
 		e.parentNode.removeChild(e);
+		for(var i = 1; i <= this.count; i++){
+			console.log(i);
+			var string = "display-character" + i;
+			var e = document.getElementById(string);
+			e.parentNode.removeChild(e);
+		}
+		this.count = 0;
 	}
 	this.rightScrollCharacter = function(character, speed){
 		var e = document.getElementById("display-character");

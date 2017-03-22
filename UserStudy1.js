@@ -1,21 +1,10 @@
 
 var UserStudy1 = function(experiment) {
 	this.experiment = experiment; // all experiment-related utilities
-	this.dirNum = 0;
-	this.eccNum = 0;
-	this.sizeNum = 2;
-	this.characterSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	this.trailNum = 20;
-	this.directions = [0, 45, 90, 135, 180, 225, 270, 315];
-	this.eccentricities = [5, 10];
-	this.startSizes = [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0];
 	this.startTime = null;
 	this.measuredAlready = false;
-	this.shuffledSet = [];
-	this.counter = {counter:0, yes:0, no:0,  state: 0};
-	this.threshold = 0.95;
-	this.report = "";
-	this.randomNum;
+	this.questionSet = ["What is your blood type","Where do you come from","What was the last movie you've watched ?","What year are you in","Name three fruits you like to eat","Are you married or not","Who is your favorite movie star","Do you believe in Jesus","Do you prefer McDonald's or KFC","When did you wake up","How many people are there in your family","Have you been to Japan","What's your college major","How often do you smoke?"]
+	this.answerSet = ["Sophia, Emma, Olivia","it was held in Los Angeles","born in October 28th, 1955","Georgia Aquarium in Atlanta","Mandarin, English, Spanish","maple leaf, beaver, ice hockey","a short film Steamboat Willie","it takes 150 calories an hour.","it takes 64 years approximately.","coffee, peanut butter, crayons","they believe it improves eyesight","Yes, there's one in Paris.","No, we don't know the exact date.","it's French, and derives from Latin.","Jackson, Aiden, Lucas.","Russia, Japan, New Zealand"]
 	var self = this;
 	this.measure = function(w, h, d) {
 		this.experiment.measure(w, h, d);
@@ -23,16 +12,34 @@ var UserStudy1 = function(experiment) {
 	}
 	this.start = function() {
 		if(!this.measuredAlready) {
-			this.measure(0.36, 0.16, 0.9);
+			this.measure(1.75, 1.32, 1.2);
 		}
-		this.randomNum = Math.floor((Math.random() * this.characterSet.length));
-		this.shuffledSet = shuffle(this.characterSet);
 		this.startTime = getCurrentTimeString();
 		console.log("UserStudy started. (" + this.startTime + ")");
 		this.experiment.showCrosshair();
-		var c = "i am handsome";
-		this.report += ((new Date()).getTime() + " showing " + c + "\n");
-		this.experiment.showCharacter(c, 90, 5, 1);
+
+	}
+	this.displayOnTop = function() {
+		this.experiment.hideCharacter();
+		this.experiment.showCharacter(this.questionSet[2], , 6, 1);
+	}
+	this.displayOnRight = function() {
+		this.experiment.hideCharacter();
+		var string = this.questionSet[2];
+		string = string.split(" ");
+		console.log(string);
+		for(var i = 0; i < string.length; i++){
+			this.experiment.showCharacter(string[i], (9 * string.length / 2 - 9 * i) % 360, 6, 1);
+		}
+	}
+	this.displayOnLeft = function() {
+		this.experiment.hideCharacter();
+		var string = this.questionSet[2];
+		string = string.split(" ");
+		console.log(string);
+		for(var i = string.length - 1 ; i >= 0; i--){
+			this.experiment.showCharacter(string[string.length - 1 - i], (180 + 9 * string.length / 2 - 9 * i) % 360, 6, 1);
+		}
 	}
 	this.showLayout = function() {
 		this.experiment.showLayout();
