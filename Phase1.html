@@ -14,11 +14,12 @@ div#padding-dic {
     <div id="padding-dic"></div>
     <div id="control-panel" style="position: absolute; top: 1250px;">
         <legend>Start?</legend>
-        <button id='startbtm' onclick="userStudy.start()">Start</button>
-        <button id='startbtm' onclick="userStudy.nextSentence()">Next</button>
+        <button id='startbtm' onclick="userStudy.QuestionStart()">QuestionStart</button>
+        <!-- <button id='startbtm' onclick="userStudy.nextSentence()">Next</button> -->
+        <button id='startbtm' onclick="userStudy.AnswerStart()">AnswerStart</button>
         <legend>See?</legend>
-        <button onclick="userStudy.displayOnTop();">Top</button>
         <button onclick="userStudy.displayOnLeft();">Left</button>
+        <button onclick="userStudy.displayOnTop();">Top</button>
         <button onclick="userStudy.displayOnRight();">Right</button>
     </div>
     <svg id="mainSVG">

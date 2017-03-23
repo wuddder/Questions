@@ -114,7 +114,6 @@ var Canvas = function(svgElementId) {
 			e.setAttribute('id', string)
 			svg.appendChild(e);
 			e = document.getElementById(string);
-			console.log("test");
 		}
 		e.setAttribute('x', character.position.x);
 		e.setAttribute('y', character.position.y);
