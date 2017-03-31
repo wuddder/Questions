@@ -24,20 +24,20 @@ var UserStudy1 = function(experiment) {
 		this.startTime = getCurrentTimeString();
 		console.log("UserStudy started. (" + this.startTime + ")");
 		this.experiment.showCrosshair();
+		this.EccNum = document.getElementById("eccNumber").value;
 		this.nowUse = this.questionSet;
 	}
 	this.AnswerStart = function() {
 		this.nowUse = this.answerSet;
-		
-
 	}
 	this.nextSentence = function() {
 		this.nextSentenceNum = (this.nextSentenceNum + 1) % 5;
 	}
 	this.displayOnTop = function() {
+		this.EccNum = document.getElementById("eccNumber").value;
 		this.nextSentence();
 		this.experiment.hideCharacter();
-		this.experiment.showCharacter(this.nowUse[this.nextSentenceNum], 90, 6, 1);
+		this.experiment.showCharacter(this.nowUse[this.nextSentenceNum], 90, this.EccNum, 1);
 	}
 	this.displayOnRight = function() {
 		this.nextSentence();
@@ -46,18 +46,17 @@ var UserStudy1 = function(experiment) {
 		string = string.split(" ");
 		if(this.count == 0){
 			for(var i = 0; i < string.length; i++){
-				this.experiment.showCharacter(string[i], (9 * string.length / 2 - 9 * i) % 360, 6, 1);
+				this.experiment.showCharacter(string[i], (9 * string.length / 2 - 9 * i) % 360, this.EccNum, 1);
 			}
 			this.count ++;
 		}
 		else if(this.count == 1){
 			for(var i = 0; i < string.length; i++){
-				this.experiment.showCharacter(string[i], (6 * string.length / 2 - 6 * i) % 360, 9, 1);
+				this.experiment.showCharacter(string[i], (6 * string.length / 2 - 6 * i) % 360, this.EccNum, 1);
 			}
 			this.count = 0;
 		}
 	}
-		
 	this.displayOnLeft = function() {
 		this.nextSentence();
 		this.experiment.hideCharacter();
@@ -65,16 +64,21 @@ var UserStudy1 = function(experiment) {
 		string = string.split(" ");
 		if(this.count == 0){		
 			for(var i = string.length - 1 ; i >= 0; i--){
-				this.experiment.showCharacter(string[string.length - 1 - i], (180 + 9 * string.length / 2 - 9 * i) % 360, 6, 1);
+				this.experiment.showCharacter(string[string.length - 1 - i], (180 + 9 * string.length / 2 - 9 * i) % 360, this.EccNum, 1);
 			}
 			this.count++;
 		}
 		else if(this.count ==1){
 			for(var i = string.length - 1 ; i >= 0; i--){
-				this.experiment.showCharacter(string[string.length - 1 - i], (180 + 6 * string.length / 2 - 6 * i) % 360, 9, 1);
+				this.experiment.showCharacter(string[string.length - 1 - i], (180 + 6 * string.length / 2 - 6 * i) % 360, this.EccNum, 1);
 			}
 			this.count = 0;
 		}
+	}
+	this.displayOnBottom = function(){
+		this.nextSentence();
+		this.experiment.hideCharacter();
+		this.experiment.showCharacter(this.nowUse[this.nextSentenceNum], 270, this.EccNum, 1);
 	}
 	this.showLayout = function() {
 		this.experiment.showLayout();
