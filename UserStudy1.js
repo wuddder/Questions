@@ -40,6 +40,7 @@ var UserStudy1 = function(experiment) {
 		this.experiment.showCharacter(this.nowUse[this.nextSentenceNum], 90, this.EccNum, 1);
 	}
 	this.displayOnRight = function() {
+		this.EccNum = document.getElementById("eccNumber").value;
 		this.nextSentence();
 		this.experiment.hideCharacter();
 		var string = this.nowUse[this.nextSentenceNum];
@@ -58,6 +59,7 @@ var UserStudy1 = function(experiment) {
 		}
 	}
 	this.displayOnLeft = function() {
+		this.EccNum = document.getElementById("eccNumber").value;
 		this.nextSentence();
 		this.experiment.hideCharacter();
 		var string = this.nowUse[this.nextSentenceNum];
@@ -76,6 +78,7 @@ var UserStudy1 = function(experiment) {
 		}
 	}
 	this.displayOnBottom = function(){
+		this.EccNum = document.getElementById("eccNumber").value;
 		this.nextSentence();
 		this.experiment.hideCharacter();
 		this.experiment.showCharacter(this.nowUse[this.nextSentenceNum], 270, this.EccNum, 1);
